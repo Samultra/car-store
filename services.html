@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Услуги</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+       
+  .services {
+            padding: 20px;
+            background-color: #f8f9fa;
+            background-image: url('/images/фон.jpg');
+        }
+
+        .services .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .service-card {
+            width: 300px;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            text-align: center;
+            transition: transform 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.6); /* Полупрозрачный белый фон */
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .service-card h2 {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 1.2rem;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-logo">
+            <img src="/images/logo_geely.png" alt="Логотип">
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="/index.html">Главная</a></li>
+                <li><a href="/index.html#popular-brands">Каталог</a></li>
+                <li><a href="/services.html">Услуги</a></li>
+                <li><a href="index.html#about-us">О нас</a></li>
+                <li><a href="/index.html#contact">Контакты</a></li>
+            </ul>
+        </nav>
+        
+    </header>
+
+    <section class="services">
+        <div class="container">
+            <div class="service-card">
+                <img src="/images/техобслуживание.jpg" alt="Техническое обслуживание">
+                <h2>Техническое обслуживание</h2>
+                <p>Качественное обслуживание и ремонт вашего автомобиля.</p>
+            </div>
+            <div class="service-card">
+                <img src="/images/автодиагностика.jpg" alt="Автомобильная диагностика">
+                <h2>Автомобильная диагностика</h2>
+                <p>Диагностика и выявление проблем вашего автомобиля.</p>
+            </div>
+            <div class="service-card">
+                <img src="/images/продажаЗапчастей.webp" alt="Продажа запасных частей и аксессуаров">
+                <h2>Продажа запасных частей</h2>
+                <p>Широкий ассортимент запасных частей и аксессуаров для вашего автомобиля.</p>
+            </div>
+            <div class="service-card">
+                <img src="/images/покраска.jpg" alt="Покраска и кузовной ремонт">
+                <h2>Покраска и кузовной ремонт</h2>
+                <p>Качественная покраска и ремонт кузова вашего автомобиля.</p>
+            </div>
+            <div class="service-card">
+                <img src="/images/оборудование.png" alt="Установка дополнительного оборудования">
+                <h2>Установка оборудования</h2>
+                <p>Установка дополнительного оборудования для вашего автомобиля.</p>
+            </div>
+            <div class="service-card">
+                <img src="/images/конультации.jpg" alt="Консультации по выбору автомобиля">
+                <h2>Консультации</h2>
+                <p>Профессиональные консультации по выбору автомобиля.</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="/images/logo_geely.png" alt="Логотип">
+                </div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="/index.html">Главная</a></li>
+                        <li><a href="index.html#about-us">О нас</a></li>
+                        <li><a href="/index.html#contact">Контакты</a></li>
+                    </ul>
+                  
+                </div>
+                <div class="footer-contact">
+                    <p>Контактная информация:</p>
+                    <p>Адрес: ул. Примерная, 123, Город</p>
+                    <p>Телефон: +7 (123) 456-78-90</p>
+                    <p>Email: info@example.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Название вашей компании. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

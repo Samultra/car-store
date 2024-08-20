@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViCAR</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+     .contact-form {
+        margin-top: 50px;
+    }
+    .contact-form h2 {
+        margin-bottom: 20px;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        font-weight: bold;
+    }
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    button[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+    .search {
+    margin-top: 20px;
+ 
+}
+
+.search-input {
+    display: flex;
+    align-items: center;
+}
+
+#carSearchInput {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+#searchParamsButton {
+    margin-left: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 50px;
+}
+
+#searchParams {
+    display: none;
+    margin-top: 10px;
+}
+
+.search-field {
+    margin-bottom: 10px;
+}
+
+.search-field label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.search-field input,
+.search-field select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#applyFiltersButton {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    
+}
+
+#applyFiltersButton:hover {
+    background-color: #0056b3;
+}
+.brand {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.brand img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.brand h5 {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.brand p {
+    font-size: 14px;
+    margin: 5px 0;
+    color: #666;
+}
+
+.popular-brands {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* или другие варианты выравнивания */
+}
+
+.brand {
+    width: calc(33.33% - 20px); /* Ширина карточки, учитывая промежутки между ними */
+    margin-bottom: 20px;
+}
+
+</style>
+
+<body>
+    <header>
+        <div class="header-logo">
+            <img src="/images/logo_geely.png" alt="Логотип">
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="/index.html">Главная</a></li>
+                <li><a href="/index.html#popular-brands">Каталог</a></li>
+                <li><a href="/services.html">Услуги</a></li>
+                <li><a href="index.html#about-us">О нас</a></li>
+                <li><a href="/index.html#contact">Контакты</a></li>
+            </ul>
+        </nav>
+        
+    </header>
+    
+    <section class="slider">
+        <div class="slider-container">
+            <div class="slide">
+                <a href="/atlas-details.html">
+                    <img src="/images/atlas.png" alt="Автомобиль 1" onmouseover="showCarInfo('Atlas', 'Краткие характеристики автомобиля Atlas')">
+               </a>
+                    <div class="car-info" id="carInfo1">
+                    <table>
+                    <tr>
+                        <td>Модель</td>
+                        <td>Geely Atlas Pro</td>
+                    </tr>
+                    <tr>
+                        <td>Длина X Ширина X Высота, мм</td>
+                        <td>4544 X 1837 X 1713</td>
+                    </tr>
+                    <tr>
+                        <td>Колесная база, мм</td>
+                        <td>2670</td>
+                    </tr>
+                    <tr>
+                        <td>Снаряженная масса, кг</td>
+                        <td>1685</td>
+                    </tr>
+                    <tr>
+                        <td>Дорожный просвет, мм</td>
+                        <td>171</td>
+                    </tr>
+                    <tr>
+                        <td>Свес передний / задний, мм</td>
+                        <td>922 / 952</td>
+                    </tr>
+                    <tr>
+                        <td>Рабочий объем двигателя, куб.см</td>
+                        <td>1477</td>
+                    </tr>
+                    <tr>
+                        <td>Мощность, л.с. (об/мин)</td>
+                        <td>177 (5500)</td>
+                    </tr>
+                    <tr>
+                        <td>Тип привода</td>
+                        <td>Передний (2WD)</td>
+                    </tr>
+                    <tr>
+                        <td>Разгон 0-100 км/ч, с</td>
+                        <td>10,5</td>
+                    </tr>
+                </table>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="/images/coolray2.png" alt="Автомобиль 2" onmouseover="showCarInfo('Coolray2', 'Краткие характеристики автомобиля Coolray2')">
+                <div class="car-info" id="carInfo2">
+                    <table>
+                        <tr>
+                            <td>Модель</td>
+                            <td>Coolray</td>
+                        </tr>
+                        <tr>
+                            <td>Длина X Ширина X Высота, мм</td>
+                            <td>4330*1800*1609</td>
+                        </tr>
+                        <tr>
+                            <td>Колесная база, мм</td>
+                            <td>2600</td>
+                        </tr>
+                        <tr>
+                            <td>Снаряженная масса, кг</td>
+                            <td>1715</td>
+                        </tr>
+                        <tr>
+                            <td>Дорожный просвет, мм</td>
+                            <td>180</td>
+                        </tr>
+                        <tr>
+                            <td>Свес передний / задний, мм</td>
+                            <td>922 / 952</td>
+                        </tr>
+                        <tr>
+                            <td>Рабочий объем двигателя, куб.см</td>
+                            <td>1477</td>
+                        </tr>
+                        <tr>
+                            <td>Мощность, л.с. (об/мин)</td>
+                            <td>110 ( 150 )</td>
+                        </tr>
+                        <tr>
+                            <td>Тип привода</td>
+                            <td>Передний</td>
+                        </tr>
+                        <tr>
+                            <td>Разгон 0-100 км/ч, с</td>
+                            <td>8,4</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="/images/mogjero.png" alt="Автомобиль 3" onmouseover="showCarInfo('Mogjero', 'Краткие характеристики автомобиля Mogjero')">
+                <div class="car-info" id="carInfo3">                    <table>
+                    <tr>
+                        <td>Модель</td>
+                        <td>GEELY MONJARO</td>
+                    </tr>
+                    <tr>
+                        <td>Длина X Ширина X Высота, мм</td>
+                        <td>4770*1895*1689</td>
+                    </tr>
+                    <tr>
+                        <td>Колесная база, мм</td>
+                        <td>2845</td>
+                    </tr>
+                    <tr>
+                        <td>Снаряженная масса, кг</td>
+                        <td>1855</td>
+                    </tr>
+                    <tr>
+                        <td>Дорожный просвет, мм</td>
+                        <td>210</td>
+                    </tr>
+                    <tr>
+                        <td>Свес передний / задний, мм</td>
+                        <td>880 / 1045</td>
+                    </tr>
+                    <tr>
+                        <td>Рабочий объем двигателя, куб.см</td>
+                        <td>2.0 / 1969</td>
+                    </tr>
+                    <tr>
+                        <td>Мощность, л.с. (об/мин)</td>
+                        <td>238 (5500)</td>
+                    </tr>
+                    <tr>
+                        <td>Тип привода</td>
+                        <td>Полный (4WD)</td>
+                    </tr>
+                    <tr>
+                        <td>Разгон 0-100 км/ч, с</td>
+                        <td>7,7</td>
+                    </tr>
+                </table>
+            </div>
+            </div>
+        </div>
+        <button class="prev" onclick="prevSlide()">&#10094;</button>
+        <button class="next" onclick="nextSlide()">&#10095;</button>
+    </section>
+    
+
+    <section class="search">
+        <form id="carSearchForm">
+            <div class="search-input">
+                <input type="text" id="carSearchInput" placeholder="Введите название автомобиля">
+                <button type="submit">Найти</button>
+            </div>
+            <button type="button" id="searchParamsButton">Параметры поиска</button>
+            <div id="searchParams" class="search-params">
+                <div class="search-field">
+                    <label for="carYear">Год выпуска:</label>
+                    <input type="number" id="carYear" placeholder="Год выпуска">
+                </div>
+                <div class="search-field">
+                    <label for="carPriceMin">Минимальная цена:</label>
+                    <input type="number" id="carPriceMin" placeholder="Минимальная цена">
+                </div>
+                <div class="search-field">
+                    <label for="carPriceMax">Максимальная цена:</label>
+                    <input type="number" id="carPriceMax" placeholder="Максимальная цена">
+                </div>
+                <div class="search-field">
+                    <label for="carDriveType">Тип привода:</label>
+                    <select id="carDriveType">
+                        <option value="">Любой</option>
+                        <option value="Передний">Передний</option>
+                        <option value="Задний">Задний</option>
+                        <option value="Полный">Полный</option>
+                    </select>
+                </div>
+                <button type="button" id="applyFiltersButton">Применить фильтры</button>
+            </div>
+        </form>
+        <div id="searchResults"></div>
+    </section>
+    
+    <section id="searchResults" class="search-results"></section>
+    <section id="popular-brands" class="popular-brands">
+
+     
+        <div class="brand">
+            <img src="/images/emgrand.png" alt="Brand 1">
+            <h5>Марка 1</h5>
+            <p>Год: 2021</p>
+            <p>Цена: $25000</p>
+            <p>Привод: Передний</p>
+        </div>
+        <div class="brand">
+            <img src="/images/coolray3.png" alt="Brand 2">
+            <h5>Марка 2</h5>
+            <p>Год: 2020</p>
+            <p>Цена: $28000</p>
+            <p>Привод: Задний</p>
+        </div>
+        <div class="brand">
+            <img src="/images/atlasPro.png" alt="Brand 3">
+            <h5>Марка 3</h5>
+            <p>Год: 2019</p>
+            <p>Цена: $30000</p>
+            <p>Привод: Полный</p>
+        </div>
+        <div class="brand">
+            <img src="/images/emgrand.png" alt="Brand 1">
+            <h5>Марка 1</h5>
+            <p>Год: 2021</p>
+            <p>Цена: $25000</p>
+            <p>Привод: Передний</p>
+        </div>
+        <div class="brand">
+            <img src="/images/coolray3.png" alt="Brand 2">
+            <h5>Марка 2</h5>
+            <p>Год: 2020</p>
+            <p>Цена: $28000</p>
+            <p>Привод: Задний</p>
+        </div>
+        <div class="brand">
+            <img src="/images/atlasPro.png" alt="Brand 3">
+            <h5>Марка 3</h5>
+            <p>Год: 2019</p>
+            <p>Цена: $30000</p>
+            <p>Привод: Полный</p>
+        </div>
+        <div class="brand">
+            <img src="/images/emgrand.png" alt="Brand 1">
+            <h5>Марка 1</h5>
+            <p>Год: 2021</p>
+            <p>Цена: $25000</p>
+            <p>Привод: Передний</p>
+        </div>
+        <div class="brand">
+            <img src="/images/coolray3.png" alt="Brand 2">
+            <h5>Марка 2</h5>
+            <p>Год: 2020</p>
+            <p>Цена: $28000</p>
+            <p>Привод: Задний</p>
+        </div>
+       
+        <!-- Добавьте еще блоки для других популярных марок автомобилей, если нужно -->
+    </section>
+
+  
+
+    <section id="about-us" class="about-us">
+        <div class="container">
+            <h2>О нас</h2>
+            <p>Мы - ваш надежный партнер в мире автомобилей. Наша компания предлагает широкий ассортимент автомобилей различных марок и моделей. Мы гордимся нашим профессионализмом и стремимся предоставить нашим клиентам лучший сервис.</p>
+            <p>У нас работают опытные специалисты, готовые помочь вам подобрать идеальный автомобиль, удовлетворяющий все ваши потребности и требования.</p>
+            <p>Наша компания заботится о своих клиентах и стремится создать комфортные условия для покупки автомобиля. Мы ценим ваше время и ваш выбор, и делаем все возможное, чтобы ваше общение с нами было приятным и эффективным.</p>
+        </div>
+    </section>
+    
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Контактная информация</h2>
+            <div class="contact-info">
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Адрес: ул. Примерная, 123, Город</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <p>Телефон: +7 (123) 456-78-90</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>Email: info@example.com</p>
+                </div>
+            </div>
+            
+            <!-- Форма обратной связи -->
+            <div class="contact-form">
+                <h2>Обратная связь</h2>
+                <form action="/submit_form.php" method="post">
+                    <div class="form-group">
+                        <label for="name">Имя:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Сообщение:</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="/images/logo_geely.png" alt="Логотип">
+                </div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="/index.html">Главная</a></li>
+                        <li><a href="index.html#about-us">О нас</a></li>
+                        <li><a href="/index.html#contact">Контакты</a></li>
+                    </ul>
+                  
+                </div>
+                <div class="footer-contact">
+                    <p>Контактная информация:</p>
+                    <p>Адрес: ул. Примерная, 123, Город</p>
+                    <p>Телефон: +7 (123) 456-78-90</p>
+                    <p>Email: info@example.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Название вашей компании. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="/script.js"></script>
+    <script>
+        // Обработчик события нажатия кнопки "Параметры поиска"
+        document.getElementById('searchParamsButton').addEventListener('click', function() {
+            var searchParams = document.getElementById('searchParams');
+            if (searchParams.style.display === 'none' || searchParams.style.display === '') {
+                searchParams.style.display = 'block';
+            } else {
+                searchParams.style.display = 'none';
+            }
+        });
+    
+        // Обработчик события отправки формы поиска
+        document.getElementById('carSearchForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Предотвращаем отправку формы
+            const searchQuery = document.getElementById('carSearchInput').value.toLowerCase(); // Получаем значение из поля ввода поиска и приводим его к нижнему регистру
+            
+            // Получаем контейнер для результатов поиска
+            const popularBrandsContainer = document.getElementById('popular-brands');
+            
+            // Получаем все машины внутри раздела каталога
+            const brands = popularBrandsContainer.querySelectorAll('.brand');
+            
+            // Проходим по каждой машине и проверяем, содержит ли название марки поисковой запрос
+            brands.forEach(function(brand) {
+                const brandName = brand.querySelector('h5').textContent.toLowerCase(); // Получаем название марки и приводим его к нижнему регистру
+                if (brandName.includes(searchQuery)) {
+                    brand.style.display = 'block'; // Показываем машину, если она содержит поисковой запрос
+                } else {
+                    brand.style.display = 'none'; // Скрываем машину, если она не соответствует поисковому запросу
+                }
+            });
+        });
+    
+        // Обработчик события нажатия кнопки "Применить фильтры"
+        document.getElementById('applyFiltersButton').addEventListener('click', function() {
+            const searchYear = document.getElementById('carYear').value.toLowerCase();
+            const searchPriceMin = document.getElementById('carPriceMin').value.toLowerCase();
+            const searchPriceMax = document.getElementById('carPriceMax').value.toLowerCase();
+            const searchDriveType = document.getElementById('carDriveType').value.toLowerCase();
+            
+            const popularBrandsContainer = document.getElementById('popular-brands');
+            const brands = popularBrandsContainer.querySelectorAll('.brand');
+    
+            brands.forEach(function(brand) {
+                const year = brand.querySelector('p:nth-child(2)').textContent.toLowerCase();
+                const price = brand.querySelector('p:nth-child(3)').textContent.toLowerCase();
+                const driveType = brand.querySelector('p:nth-child(4)').textContent.toLowerCase();
+                
+                if (
+                    (searchYear === '' || year.includes(searchYear)) &&
+                    (searchPriceMin === '' || parseFloat(price.replace('$', '')) >= parseFloat(searchPriceMin)) &&
+                    (searchPriceMax === '' || parseFloat(price.replace('$', '')) <= parseFloat(searchPriceMax)) &&
+                    (searchDriveType === '' || driveType.includes(searchDriveType))
+                ) {
+                    brand.style.display = 'block';
+                } else {
+                    brand.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    
+</body>
+
+</html>

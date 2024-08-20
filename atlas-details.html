@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подробные характеристики автомобиля</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('/images/back4.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: #fff;
+        }
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+        }
+        nav {
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            font-size: 24px;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .header-logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .header-logo img {
+            width: 200px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        .header-logo img:hover {
+            transform: scale(1.1);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .slider-container {
+            display: flex;
+            overflow-x: hidden;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+        }
+        .slide {
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+            width: 100%;
+        }
+        .slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            animation: fade 1s ease-in-out;
+        }
+        @keyframes fade {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-family: Arial, sans-serif;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        td:first-child {
+            font-weight: bold;
+            min-width: 200px;
+        }
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-logo img {
+            width: 200px;
+            height: auto;
+        }
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        .footer-links ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .footer-contact p {
+            margin: 0;
+        }
+        .footer-bottom {
+            margin-top: 20px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        .test-drive-form {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+        }
+        .test-drive-form h2 {
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        .form-group input[type="submit"] {
+            background-color: #f2f2f2;
+            color: #333;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #e0e0e0;
+        }
+        .modal {
+    display: none; /* Скрываем модальное окно по умолчанию */
+    position: fixed; /* Фиксированное положение */
+    z-index: 1; /* Поверх всех элементов */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Включаем прокрутку для длинного содержимого */
+    background-color: rgb(0,0,0); /* Черный фон с прозрачностью */
+    background-color: rgba(0,0,0,0.4); /* Черный фон с прозрачностью */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Отступ сверху и по центру экрана */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Ширина модального окна */
+    color: #000;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-logo">
+            <img src="/images/logo_geely.png" alt="Логотип">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/index.html">Главная</a></li>
+                <li><a href="/index.html#popular-brands">Каталог</a></li>
+                <li><a href="/services.html">Услуги</a></li>
+                <li><a href="index.html#about-us">О нас</a></li>
+                <li><a href="/index.html#contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="slider">
+            <div class="slider-container">
+                <div class="slide">
+                    <img src="/images/mogjeroGallary.png" alt="Автомобиль 1">
+                </div>
+                <div class="slide">
+                    <img src="/images/mogjeroGallary2.png" alt="Автомобиль 2">
+                </div>
+                <div class="slide">
+                    <img src="/images/mogjeroGallary3.png" alt="Автомобиль 3">
+                </div>
+                <div class="slide">
+                    <img src="/images/mogjeroGallary4.png" alt="Автомобиль 4">
+                </div>
+                <div class="slide">
+                    <img src="/images/mogjeroGallary5.png" alt="Автомобиль 5">
+                </div>
+                <div class="slide">
+                    <img src="/images/mogjeroGallary6.png" alt="Автомобиль 6">
+                </div>
+                <div class="slide">
+                    <img src="/images/mogjeroGallary7.png" alt="Автомобиль 7">
+                </div>
+                <div class="slide">
+                    <img src="/images/mogjeroGallary8.png" alt="Автомобиль 8">
+                </div>
+                <div class="slide">
+                    <img src="/images/mogjeroGallary9.png" alt="Автомобиль 9">
+                </div>
+                <div class="slide">
+                    <img src="/images/mogjeroGallary10.png" alt="Автомобиль 10">
+                </div>
+                <div class="slide">
+                    <img src="/images/mogjeroGallary11.png" alt="Автомобиль 11">
+                </div>
+                <div class="slide">
+                    <img src="/images/mogjeroGallary12.png" alt="Автомобиль 12">
+                </div>
+                <div class="slide">
+                    <img src="/images/mogjeroGallary13.png" alt="Автомобиль 13">
+                </div>
+            </div>
+        </div>
+        <table>
+            <tr>
+                <th>Характеристика</th>
+                <th>Значение</th>
+            </tr>
+            <tr>
+                <td>Модель</td>
+                <td>Atlas</td>
+            </tr>
+            <tr>
+                <td>Длина X Ширина X Высота, мм</td>
+                <td>4544 X 1837 X 1713</td>
+            </tr>
+            <tr>
+                <td>Колесная база, мм</td>
+                <td>2670</td>
+            </tr>
+            <tr>
+                <td>Снаряженная масса, кг</td>
+                <td>1685</td>
+            </tr>
+            <tr>
+                <td>Дорожный просвет, мм</td>
+                <td>171</td>
+            </tr>
+            <tr>
+                <td>Свес передний / задний, мм</td>
+                <td>922 / 952</td>
+            </tr>
+            <tr>
+                <td>Рабочий объем двигателя, куб.см</td>
+                <td>1477</td>
+            </tr>
+            <tr>
+                <td>Мощность, л.с. (об/мин)</td>
+                <td>177 (5500)</td>
+            </tr>
+            <tr>
+                <td>Тип привода</td>
+                <td>Передний (2WD)</td>
+            </tr>
+            <tr>
+                <td>Разгон 0-100 км/ч, с</td>
+                <td>10,5</td>
+            </tr>
+        </table>
+        <div class="test-drive-form">
+            <h2>Записаться на тест-драйв</h2>
+            <form id="testDriveForm" action="/submit_test_drive" method="post">
+                <div class="form-group">
+                    <label for="name">Имя</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Дата</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Записаться">
+                </div>
+            </form>
+        </div>
+        
+        <!-- Модальное окно -->
+        <div id="successModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Форма успешно отправлена!</p>
+            </div>
+        </div>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="/images/logo_geely.png" alt="Логотип">
+                </div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="/index.html">Главная</a></li>
+                        <li><a href="index.html#about-us">О нас</a></li>
+                        <li><a href="/index.html#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <p>Контактная информация:</p>
+                    <p>Адрес: ул. Примерная, 123, Город</p>
+                    <p>Телефон: +7 (123) 456-78-90</p>
+                    <p>Email: info@example.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Название вашей компании. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        var slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("slide");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            slides[slideIndex-1].style.display = "block";
+            setTimeout(showSlides, 5000); // Change image every 5 seconds
+        }
+
+       
+    document.getElementById('testDriveForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Предотвращаем отправку формы
+        
+        // Выполняем действия для отправки формы, например, отправка данных через AJAX
+        const formData = new FormData(this);
+        
+        fetch('/submit_test_drive', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                showModal('Форма успешно отправлена!');
+                this.reset(); // Сбрасываем форму после успешной отправки
+            } else {
+                showModal('Отлично! Вы успешно записались на тест драйв');
+            }
+        })
+        .catch(error => {
+            showModal('Произошла ошибка при отправке формы.');
+            console.error('Ошибка:', error);
+        });
+    });
+
+    function showModal(message) {
+        const modal = document.getElementById('successModal');
+        modal.style.display = 'block';
+        modal.querySelector('p').textContent = message;
+
+        const span = modal.querySelector('.close');
+        span.onclick = function() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+    }
+
+    </script>
+</body>
+</html>
